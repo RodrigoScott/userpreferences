@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:userpreferences/src/widgets/menu_widget.dart';
 
 class HomePage extends StatelessWidget {
   
@@ -10,16 +11,19 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
          title: Text('Preferencias de Usuario'),
       ),
+      drawer: menuWidget(),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text('Color secundario'),
-          SizedBox(height: 20.0,),
+          Divider(),
           Text('Color secundario'),
-          SizedBox(height: 20.0,),
+          Divider(),
           Text('Color secundario'),
-          SizedBox(height: 20.0,),
+          Divider(),
         ],
       ),
     );
   }
+
 }
