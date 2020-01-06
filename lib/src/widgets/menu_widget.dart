@@ -43,7 +43,37 @@ class menuWidget extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.pages, color: Colors.blue,),
-            title: Text('Pages'),
+            title: Text('Pages1'),
+            onTap: (){},
+          ),
+          ListTile(
+            leading: Icon(Icons.pages, color: Colors.blue,),
+            title: Text('Pages2'),
+            onTap: (){},
+          ),
+          ListTile(
+            leading: Icon(Icons.pages, color: Colors.blue,),
+            title: Text('Pages3'),
+            onTap: (){},
+          ),
+          ListTile(
+            leading: Icon(Icons.pages, color: Colors.blue,),
+            title: Text('Pages4'),
+            onTap: (){},
+          ),
+          ListTile(
+            leading: Icon(Icons.pages, color: Colors.blue,),
+            title: Text('Pages5'),
+            onTap: (){},
+          ),
+          ListTile(
+            leading: Icon(Icons.pages, color: Colors.blue,),
+            title: Text('Pages6'),
+            onTap: (){},
+          ),
+          ListTile(
+            leading: Icon(Icons.pages, color: Colors.blue,),
+            title: Text('Pages7'),
             onTap: (){},
           ),
 

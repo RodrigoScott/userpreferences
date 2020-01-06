@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:userpreferences/src/pages/user_preferences.dart';
 import 'package:userpreferences/src/widgets/menu_widget.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -13,25 +14,31 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
 
   bool _secundaryColor = false;
-  int _gender = 1;
+  int _gender;
   String _name = 'Rodrigo';
 
   TextEditingController _textCOntroller;
+
+  final save = new UserPreferences();
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-
-    _textCOntroller = new TextEditingController( text: _name);
+    _textCOntroller = new TextEditingController( text: save.getname);
+    _gender = save.gender;
+    _secundaryColor = save.getsecundaryColor;
+    save.setpage = SettingsPage.routeName;
 
   }
+
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-
+        backgroundColor: (save.getsecundaryColor) ? Colors.cyan: Colors.blue,
         title: Text('Ajustes'),
       ),
       drawer: menuWidget(),
@@ -43,38 +50,32 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
           Divider(),
           SwitchListTile(
+            title: Text('Color secundario'),
               value: _secundaryColor,
               onChanged: (value){
-                _secundaryColor = value;
-                setState(() {
-
-                });
-              },
-            title: Text('Color secundario'),
-          ),
-          Divider(),
-          RadioListTile(
-              value: 1,
-              groupValue: _gender,
-              onChanged: (value){
-                _gender = value;
-                setState(() {
-
-                });
-              },
-            title: Text('Masculino'),
-          ),
-          RadioListTile(
-            value: 2,
-            groupValue: _gender,
-            onChanged: (value){
-              _gender = value;
               setState(() {
+                save.setsecundaryColor = value;
+                _secundaryColor = value;
 
               });
 
-            },
+            }
+
+          ),
+          Divider(),
+          RadioListTile(
+              title: Text('Masculino'),
+              value: 1,
+              groupValue: _gender,
+              onChanged: _setSelectedRadio,
+
+          ),
+          RadioListTile(
             title: Text('Femenino'),
+            value: 2,
+            groupValue: _gender,
+            onChanged: _setSelectedRadio,
+
           ),
           Divider(),
           Container(
@@ -86,7 +87,8 @@ class _SettingsPageState extends State<SettingsPage> {
                 helperText: 'Nombre de la persona usando el telefono',
               ),
               onChanged: (value){
-
+                save.setname = value;
+                _name = value;
               },
             ),
           ),
@@ -94,4 +96,11 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
     );
   }
+
+  _setSelectedRadio(int value) {
+    save.gender = value;
+    _gender = value;
+    setState(() {});
+  }
+
 }
